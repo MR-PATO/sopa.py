@@ -1,4 +1,4 @@
-# resaltador_sopa.py
+# sopa_coloreada.py
 
 def mostrar_sopa():
     sopa = [
@@ -6,7 +6,7 @@ def mostrar_sopa():
         list("IGBNEGQBARSTOP"),
         list("NEOURFNZEDOVMS"),
         list("TBKVDUEGAUDEFI"),
-        list("EFLWVZVMYIGBC"),
+        list("EFLWVZVMYIGGBC"),
         list("LORNRFNBENOKRO"),
         list("IGCEUEZFZLWMEL"),
         list("GMCRVKPLURFBWO"),
@@ -16,45 +16,55 @@ def mostrar_sopa():
         list("ISGFEBEOANBCMD"),
         list("AWXVDILCFYGANE"),
         list("EJKLKUORSDZLAL"),
-        list("MOGNCYGURECICA"),
-        list("ONOBTWOKMTECZZ"),
+        list("MOGNCYGLRECICA"),
+        list("ONJOBTIWOKMTEC"),
         list("CSHSWRAKANBSYO"),
         list("IXYEFEGVWRVETN"),
         list("OZTLOHOCLAWDOD"),
         list("NVRSUNMCVBROPX"),
         list("ABCKBWUNANATKC"),
-        list("LZRFDQAEÑYULCC"),
+        list("LZRFDQOAEÑYULC"),
         list("CLGLRPZLOVKAÑI"),
         list("SDSKWEYCBCZSFO"),
         list("GKZOBIGORUNBWN"),
         list("VLBA GOVJÑUODGE"),
-        list("DFC ESFMISJKFMS"),
-        list("SEGUNDAFASEACF")
+        list("DFCESFMISJKFMS"),
+        list("SEGUNDAFASEACF"),
     ]
 
-    coordenadas = {
-        # Ejemplo: (fila, columna)
-        (0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0),
-        (7, 0), (8, 0), (9, 0), (10, 0), (11, 0), (12, 0), (13, 0),
-        (14, 0), (15, 0), (16, 0), (17, 0),  # INTELIGENCIA EMOCIONAL
+    # Coordenadas corregidas de todas las palabras
+    coordenadas = set([
+        # 1. INTELIGENCIAEMOCIONAL (vertical)
+        *[(i, 0) for i in range(18)],
 
-        (2, 14), (3, 13), (4, 12), (5, 11), (6, 10), (7, 9), (8, 8),
-        (9, 7), (10, 6),  # SIMULADOR
+        # 2. SIMULADOR (diagonal invertida desde (2,14) a (10,6))
+        (2,14),(3,13),(4,12),(5,11),(6,10),(7,9),(8,8),(9,7),(10,6),
 
-        (5, 12), (6, 12), (7, 12), (8, 12), (9, 12), (10, 12), (11, 12),
-        (12, 12), (13, 12),  # PSICOLOGIA
+        # 3. PSICOLOGIA (columna 12, de (5,12) a (13,12))
+        *[(i,12) for i in range(5,14)],
 
-        (14, 13), (15, 13), (16, 13), (17, 13),  # VIAL
+        # 4. VIAL (vertical desde (14,13) a (17,13))
+        (14,13),(15,13),(16,13),(17,13),
 
-        (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10),  # CABEZA
+        # 5. CABEZA (horizontal desde (0,5) a (0,10))
+        (0,5),(0,6),(0,7),(0,8),(0,9),(0,10),
 
-        (9, 13), (10, 13), (11, 13), (12, 13),  # OIDO
+        # 6. OIDO (vertical desde (9,13) a (12,13))
+        (9,13),(10,13),(11,13),(12,13),
 
-        (17, 16), (17, 15), (17, 14), (17, 13), (17, 12), (17, 11), (17, 10),  # ALCOHOL
+        # 7. ALCOHOL (horizontal invertida desde (17,16) a (17,10))
+        *[(17,i) for i in range(10,17+1)][::-1],
 
-        (26, 0), (26, 1), (26, 2), (26, 3), (26, 4), (26, 5), (26, 6), (26, 7),
-        (26, 8), (26, 9), (26, 10),  # SEGUNDAFASE
-    }
+        # 8. AUTOEMBRIAGUEZ (diagonal desde (10,0))
+        (10,0),(11,1),(12,2),(13,3),(14,4),(15,5),(16,6),(17,7),(18,8),(19,9),(20,10),(21,11),
+
+        # 9. CERVEZA (horizontal desde (24,3) a (24,9))
+        *[(24,i) for i in range(3,10)],
+
+        # 10. ESTRÉS (palabra ES y luego TRES – letras dispersas)
+        (1,13),(1,14),  # ES
+        (26,0),(26,1),(26,2),(26,3)  # TRES
+    ])
 
     print("SOPA DE LETRAS CON PALABRAS RESALTADAS:\n")
 
